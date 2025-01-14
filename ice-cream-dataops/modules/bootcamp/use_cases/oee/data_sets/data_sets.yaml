@@ -1,0 +1,3 @@
+name: Overall Equipment Effectiveness Use Cas
+externalId: {{ uc_oee_ds_external_id }}
+description: This dataset contains the source data for the Overall Equipment Effectiveness Use Case.

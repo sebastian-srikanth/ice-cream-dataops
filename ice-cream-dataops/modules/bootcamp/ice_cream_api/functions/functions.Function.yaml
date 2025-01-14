@@ -1,0 +1,47 @@
+- name: Ice Cream API Assets Extractor
+  externalId: icapi_assets_extractor
+  owner: Bootcamp Team
+  description: Extracts Asset data from the Ice Cream API
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ CDF_PROJECT }}
+    CDF_URL: {{ CDF_URL }}
+    IDP_SCOPES: {{ IDP_SCOPES }}
+    IDP_TENANT_ID: {{ IDP_TENANT_ID }}
+    IDP_CLIENT_ID: {{ icapi_extractors_client_id }}
+    IDP_CLIENT_SECRET: {{ icapi_extractors_client_secret }}
+
+- name: Ice Cream API Data Points Extractor
+  externalId: icapi_datapoints_extractor
+  owner: Bootcamp Team
+  description: Extracts Data Points from the Ice Cream API
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ CDF_PROJECT }}
+    CDF_URL: {{ CDF_URL }}
+    IDP_SCOPES: {{ IDP_SCOPES }}
+    IDP_TENANT_ID: {{ IDP_TENANT_ID }}
+    IDP_CLIENT_ID: {{ icapi_extractors_client_id }}
+    IDP_CLIENT_SECRET: {{ icapi_extractors_client_secret }}
+
+- name: Ice Cream API Time Series Extractor
+  externalId: icapi_timeseries_extractor
+  owner: Bootcamp Team
+  description: Extracts Time Series from the Ice Cream API
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ CDF_PROJECT }}
+    CDF_URL: {{ CDF_URL }}
+    IDP_SCOPES: {{ IDP_SCOPES }}
+    IDP_TENANT_ID: {{ IDP_TENANT_ID }}
+    IDP_CLIENT_ID: {{ icapi_extractors_client_id }}
+    IDP_CLIENT_SECRET: {{ icapi_extractors_client_secret }}
