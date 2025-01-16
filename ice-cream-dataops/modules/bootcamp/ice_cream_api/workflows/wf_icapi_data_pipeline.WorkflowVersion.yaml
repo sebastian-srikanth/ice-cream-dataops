@@ -1,0 +1,66 @@
+workflowExternalId: wf_icapi_data_pipeline
+version: '1'
+workflowDefinition:
+  tasks:
+  # Two parallel tasks can trigger at the same time, 1 for assets and 1 for timeseries
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_assets_extractor
+    type: function
+    parameters:
+      function:
+        externalId: icapi_assets_extractor
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_timeseries_extractor
+    type: function
+    parameters:
+      function:
+        externalId: icapi_timeseries_extractor
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_datapoints_extractor
+    type: function
+    parameters:
+      function:
+        externalId: icapi_datapoints_extractor
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+    dependsOn:
+      - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_timeseries_extractor
+
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_tr_create_asset_hierarchy
+    type: transformation
+    parameters:
+      transformation:
+        externalId: tr_create_asset_hierarchy
+        concurrencyPolicy: fail
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+    dependsOn:
+      - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_assets_extractor
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_tr_icapi_ts_assets_contextualization
+    type: transformation
+    parameters:
+      transformation:
+        externalId: tr_icapi_ts_assets_contextualization
+        concurrencyPolicy: fail
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+    dependsOn:
+      - externalId: {{ wf_icapi_data_pipeline_external_id }}_tr_create_asset_hierarchy
+  
+  - externalId: {{ wf_icapi_data_pipeline_external_id }}_oee_timeseries
+    type: function
+    parameters:
+      function:
+        externalId: oee_timeseries
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+    dependsOn:
+      - externalId: {{ wf_icapi_data_pipeline_external_id }}_icapi_datapoints_extractor
+      - externalId: {{ wf_icapi_data_pipeline_external_id }}_tr_icapi_ts_assets_contextualization
