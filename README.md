@@ -16,6 +16,7 @@ This bootcamp guides you through:
 ### Prerequisites
 - Install the latest version of the [Cognite Python SDK](https://cognite-sdk-python.readthedocs-hosted.com/en/latest/).
 - Ensure you have a valid CDF `.toml` configuration file with your project and authentication details.
+- Also make sure before we dploy to prod we setup the `cognite_toolkit_service_principal` for prod environment.
 
 ### Documentation
 
