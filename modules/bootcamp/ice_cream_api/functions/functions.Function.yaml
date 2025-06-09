@@ -1,0 +1,15 @@
+- name: Ice Cream API DataPoints Extractor
+  externalId: icapi_datapoints_extractor
+  owner: Bootcamp Team
+  description: Extracts DataPoints data from the Ice Cream API
+  metadata:
+    version: "1.0"
+  runtime: py311
+  functionPath: ./handler.py
+  envVars:
+    CDF_PROJECT: {{ cdfProjectName }}
+    CDF_URL: {{ cdfUrl }}
+    IDP_TENANT_ID: {{ idpTenantId }}
+    IDP_CLIENT_ID: {{ icapi_extractors_client_id }}
+    IDP_CLIENT_SECRET: {{ icapi_extractors_client_secret }}
+    IDP_SCOPES: {{ scopes }}

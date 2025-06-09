@@ -1,0 +1,5 @@
+name: Overall Equipment Effectiveness Use Case
+externalId: {{ uc_oee_ds_external_id }}
+description: |
+  This dataset contains the data for the Overall Equipment Effectiveness (OEE) use case.
+  It includes information about production efficiency, downtime, and other relevant metrics.

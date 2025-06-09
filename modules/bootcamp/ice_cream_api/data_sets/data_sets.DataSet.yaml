@@ -1,0 +1,5 @@
+name: Ice Cream Factory Source Data
+externalId: {{ icapi_ds_external_id }}
+description: |
+  This dataset contains the source data for the Ice Cream Factory use case.
+  It includes information about ice cream flavors, ingredients, and production details.
